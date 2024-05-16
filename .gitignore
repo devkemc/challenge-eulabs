@@ -8,6 +8,7 @@
 *.so
 *.dylib
 .idea
+pkg/config/config.yaml
 # Test binary, built with `go test -c`
 *.test
 
