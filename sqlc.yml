@@ -1,8 +1,8 @@
 version: "2"
 sql:
   - engine: "mysql"
-    queries: ["db/product/queries.sql"]
-    schema: ["db/product/schema.sql"]
+    queries: ["pkg/db/product/queries.sql"]
+    schema: ["pkg/db/product/schema.sql"]
     gen:
       go:
         package: "product"
