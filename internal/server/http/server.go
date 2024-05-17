@@ -5,6 +5,7 @@ import (
 	"github.com/devkemc/challenge-eulabs/pkg/config"
 	"github.com/devkemc/challenge-eulabs/pkg/db/product"
 	"github.com/labstack/echo/v4"
+	echoSwagger "github.com/swaggo/echo-swagger"
 )
 
 type Server struct {
@@ -34,7 +35,7 @@ func (s *Server) Start() {
 }
 
 func (s *Server) MapRoutes() error {
-	s.engine.Group("/v1")
-	productHttp.Routes(s.engine.Group("/v1"), s.queries)
+	s.engine.GET("/swagger/*", echoSwagger.WrapHandler)
+	productHttp.Routes(s.engine.Group("/api/v1"), s.queries)
 	return nil
 }

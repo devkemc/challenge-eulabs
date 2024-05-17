@@ -17,6 +17,14 @@ type ProductHandler struct {
 func NewProductHandler(service *service.ProductService) *ProductHandler {
 	return &ProductHandler{service: service}
 }
+
+// GetProducts godoc
+//
+//	@Summary	get all products
+//	@Tags		products
+//	@Produce	json
+//	@Success	200	{object}	dto.ListProductsRes
+//	@Router		/products [get]
 func (h *ProductHandler) GetProducts(c echo.Context) error {
 	output, err := h.service.ListAllProducts(c.Request().Context())
 	if err != nil {
@@ -26,6 +34,14 @@ func (h *ProductHandler) GetProducts(c echo.Context) error {
 	return response.JSON(c, http.StatusOK, output)
 }
 
+// CreateProduct godoc
+//
+//			@Summary	create product
+//			@Tags		products
+//			@Produce	json
+//			@Param		_	body	dto.NewProductReq	true	"Body"
+//	        @Success    201
+//			@Router		/products [post]
 func (h *ProductHandler) CreateProduct(c echo.Context) error {
 	var input dto.NewProductReq
 	if err := c.Bind(&input); err != nil {
@@ -39,7 +55,15 @@ func (h *ProductHandler) CreateProduct(c echo.Context) error {
 	return response.JSON(c, http.StatusCreated, nil)
 }
 
-func (h *ProductHandler) GetProduct(c echo.Context) error {
+// FindProductById godoc
+//
+//			@Summary	find product by id
+//			@Tags		products
+//			@Produce	json
+//			@Param		id	path	string				true	"Product ID"
+//	     	@Success    200 {object} dto.FindByIdProductRes
+//			@Router		/products/{id} [get]
+func (h *ProductHandler) FindProductById(c echo.Context) error {
 	id, err := strconv.ParseUint(c.Param("id"), 10, 64)
 	if err != nil {
 		log.Print(err)
@@ -53,6 +77,14 @@ func (h *ProductHandler) GetProduct(c echo.Context) error {
 	return response.JSON(c, http.StatusOK, output)
 }
 
+// UpdateProduct godoc
+//
+//			@Summary	update product
+//			@Tags		products
+//			@Produce	json
+//			@Param		id	path	string				true	"Product ID"
+//	     	@Success    200 {object} dto.UpdateProductReq
+//			@Router		/products/{id} [put]
 func (h *ProductHandler) UpdateProduct(c echo.Context) error {
 	id, err := strconv.ParseUint(c.Param("id"), 10, 64)
 	if err != nil {
@@ -72,6 +104,14 @@ func (h *ProductHandler) UpdateProduct(c echo.Context) error {
 	return response.JSON(c, http.StatusOK, output)
 }
 
+// InactivateProduct godoc
+//
+//			@Summary	inactivate product
+//			@Tags		products
+//			@Produce	json
+//			@Param		id	path	string				true	"Product ID"
+//	     	@Success    204
+//			@Router		/products/{id} [delete]
 func (h *ProductHandler) InactivateProduct(c echo.Context) error {
 	id, err := strconv.ParseUint(c.Param("id"), 10, 64)
 	if err != nil {

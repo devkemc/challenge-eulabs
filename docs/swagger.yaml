@@ -1,0 +1,154 @@
+basePath: /api/v1
+definitions:
+  dto.FindByIdProductRes:
+    properties:
+      active:
+        type: boolean
+      description:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      price:
+        type: number
+      stock:
+        type: integer
+    type: object
+  dto.ListProductsRes:
+    properties:
+      products:
+        items:
+          $ref: '#/definitions/dto.ProductAll'
+        type: array
+    type: object
+  dto.NewProductReq:
+    properties:
+      active:
+        type: boolean
+      description:
+        type: string
+      name:
+        type: string
+      price:
+        type: number
+      stock:
+        type: integer
+    type: object
+  dto.ProductAll:
+    properties:
+      description:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      price:
+        type: number
+      stock:
+        type: integer
+    type: object
+  dto.UpdateProductReq:
+    properties:
+      active:
+        type: boolean
+      description:
+        type: string
+      name:
+        type: string
+      price:
+        type: number
+      stock:
+        type: integer
+    type: object
+info:
+  contact:
+    email: joaquimkbs@gmail.com
+    name: Joaquim Kennedy Batista de Souza
+  description: API to validate knowledge with golang.
+  license:
+    name: Apache 2.0
+  title: Challenge Eulabs API
+  version: "1.0"
+paths:
+  /products:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.ListProductsRes'
+      summary: get all products
+      tags:
+      - products
+    post:
+      parameters:
+      - description: Body
+        in: body
+        name: _
+        required: true
+        schema:
+          $ref: '#/definitions/dto.NewProductReq'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+      summary: create product
+      tags:
+      - products
+  /products/{id}:
+    delete:
+      parameters:
+      - description: Product ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+      summary: inactivate product
+      tags:
+      - products
+    get:
+      parameters:
+      - description: Product ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.FindByIdProductRes'
+      summary: find product by id
+      tags:
+      - products
+    put:
+      parameters:
+      - description: Product ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.UpdateProductReq'
+      summary: update product
+      tags:
+      - products
+schemes:
+- http
+swagger: "2.0"

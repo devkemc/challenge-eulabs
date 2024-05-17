@@ -15,7 +15,7 @@ func Routes(group *echo.Group, query *product.Queries) {
 	{
 		productRoutes.GET("", handler.GetProducts)
 		productRoutes.POST("", handler.CreateProduct)
-		productRoutes.GET("/:id", handler.GetProduct)
+		productRoutes.GET("/:id", handler.FindProductById)
 		productRoutes.PUT("/:id", handler.UpdateProduct)
 		productRoutes.DELETE("/:id", handler.InactivateProduct)
 	}
