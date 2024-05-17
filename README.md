@@ -18,22 +18,21 @@ lógica de apresentação.
 
 ## Como Executar Localmente
 
-Pré-requisitos
-Go instalado
-MySQL instalado ou em docker
-Instalação
-Clone o repositório:
-git clone https://github.com/devkemc/challenge-eulabs.git
-Navegue até o diretório do projeto:
-cd challenge-eulabs/pkg/config/
-Crie o arquivo config.yaml com as configurações necessárias, incluindo detalhes do banco de dados e qualquer outra
-configuração específica do ambiente.
-Volte para a raiz do projeto:
-cd../../..
-Execute a API:
-go run cmd/api/main.go
-Por padrão, a API será acessível em http://localhost. A porta pode variar dependendo da configuração no arquivo
-config.yaml.
+- ### Pré-requisitos
+  - Go instalado
+  - MySQL instalado ou em docker
+- ### Instalação
+ - Clone o repositório:
+ - git clone https://github.com/devkemc/challenge-eulabs.git
+ - Navegue até o diretório do projeto:
+ - cd challenge-eulabs/pkg/config/
+ - Crie o arquivo config.yaml com as configurações necessárias, incluindo detalhes do banco de dados e qualquer outra
+  configuração específica do ambiente.
+- Volte para a raiz do projeto:
+- cd../../..
+- Execute a API:
+- go run cmd/api/main.go
+ ### Por padrão, a API será acessível em http://localhost. A porta pode variar dependendo da configuração no arquivo config.yaml.
 
 ## Documentação
 
