@@ -1,7 +1,7 @@
 package http
 
 import (
-	productHttp "github.com/devkemc/challenge-eulabs/internal/product/port/http"
+	productHttp "github.com/devkemc/challenge-eulabs/internal/product/infraestructure/port/http"
 	"github.com/devkemc/challenge-eulabs/pkg/config"
 	"github.com/devkemc/challenge-eulabs/pkg/db/product"
 	"github.com/labstack/echo/v4"
