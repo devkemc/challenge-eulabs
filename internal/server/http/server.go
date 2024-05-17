@@ -1,18 +1,19 @@
 package http
 
 import (
-	"github.com/devkemc/challenge-eulabs/internal/database"
+	productHttp "github.com/devkemc/challenge-eulabs/internal/product/port/http"
 	"github.com/devkemc/challenge-eulabs/pkg/config"
+	"github.com/devkemc/challenge-eulabs/pkg/db/product"
 	"github.com/labstack/echo/v4"
 )
 
 type Server struct {
 	engine  *echo.Echo
-	queries *database.Queries
+	queries *product.Queries
 	config  *config.Schema
 }
 
-func NewServer(queries *database.Queries) *Server {
+func NewServer(queries *product.Queries) *Server {
 	return &Server{
 		engine:  echo.New(),
 		queries: queries,
@@ -34,5 +35,6 @@ func (s *Server) Start() {
 
 func (s *Server) MapRoutes() error {
 	s.engine.Group("/v1")
+	productHttp.Routes(s.engine.Group("/v1"), s.queries)
 	return nil
 }

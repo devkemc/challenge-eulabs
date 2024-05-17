@@ -10,9 +10,13 @@ import (
 
 type Schema struct {
 	Environment string `env:"environment"`
-	HttpPort    int    `env:"http_port"`
+	HttpPort    string `env:"http_port"`
 	DatabaseURI string `env:"database_uri"`
 }
+
+const (
+	ProductionEnv = "production"
+)
 
 var (
 	cfg Schema

@@ -4,30 +4,31 @@ INSERT INTO products ( prd_name
                      , prd_description
                      , prd_stock
                      , prd_active)
-VALUES ($1, $2, $3, $4, $5);
+VALUES (?, ?, ?, ?, ?);
 
 -- name: UpdateProduct :exec
 UPDATE products
-SET prd_name        = $2
-  , prd_price       = $3
-  , prd_description = $4
-  , prd_stock       = $5
-  , prd_active      = $6
-WHERE prd_id = $1;
+SET prd_name        = ?
+  , prd_price       = ?
+  , prd_description = ?
+  , prd_stock       = ?
+  , prd_active      = ?
+WHERE prd_id = ?;
 
 -- name: InactivateProduct :exec
 UPDATE products
 SET prd_active = false
-WHERE prd_id = $1;
+WHERE prd_id = ?;
 
--- name: ListProducts :one
+-- name: ListProducts :many
 SELECT prd_id
      , prd_name
      , prd_price
      , prd_description
      , prd_stock
      , prd_active
-FROM products;
+FROM products
+WHERE prd_active = true;
 
 -- name: GetProductById :one
 SELECT prd_id
@@ -37,4 +38,4 @@ SELECT prd_id
      , prd_stock
      , prd_active
 FROM products
-WHERE prd_id = $1;
+WHERE prd_id = ?;
